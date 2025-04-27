@@ -25,7 +25,7 @@ SECRET_KEY = "django-insecure-89ap(gs1om1(ayoc80ch%+$*x1p&kpqq#g7av#^x8k#h)5zo5z
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'https://symmetrical-dollop-rp465gw95gqhx5w-8000.app.github.dev']
 
 
 # Application definition
@@ -37,6 +37,10 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    'rest_framework',
+    'djongo',
+    'corsheaders',
+    'monafit_tracker',
 ]
 
 MIDDLEWARE = [
@@ -47,6 +51,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = "octofit_tracker.urls"
@@ -76,8 +81,8 @@ WSGI_APPLICATION = "octofit_tracker.wsgi.application"
 # Configuração do banco de dados MongoDB
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'octofit_db',
+        'ENGINE': 'djongo',
+        'NAME': 'monafit_db',
         'HOST': 'localhost',
         'PORT': 27017,
     }
@@ -145,3 +150,5 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+CORS_ALLOW_ALL_ORIGINS = True
